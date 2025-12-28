@@ -1,0 +1,19 @@
+@page "/Account/Logout"
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject NavigationManager NavigationManager
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        if (HttpContext is not null)
+        {
+            await SignInManager.SignOutAsync();
+            NavigationManager.NavigateTo("/", forceLoad: true);
+        }
+    }
+
+    [CascadingParameter]
+    private HttpContext? HttpContext { get; set; }
+}

@@ -1,0 +1,20 @@
+@page "/admin"
+
+@attribute [Authorize(Roles = "Admin")]
+@rendermode InteractiveServer
+
+<PageTitle>Admin Page</PageTitle>
+
+<h3>Admin Page</h3>
+
+<AuthorizeView Roles="Admin">
+    <Authorized>
+        <div class="alert alert-warning">
+            <p>Welcome Admin, @context.User.Identity?.Name!</p>
+            <p>This page is only accessible to users with the Admin role.</p>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <p class="text-danger">You need to be an admin to access this page.</p>
+    </NotAuthorized>
+</AuthorizeView>

@@ -1,0 +1,17 @@
+@page "/secure"
+@attribute [Authorize]
+@rendermode InteractiveServer
+
+<PageTitle>Secure Page</PageTitle>
+
+<h3>Secure Page</h3>
+
+<AuthorizeView>
+    <Authorized>
+        <div class="alert alert-success">
+            <p>Welcome, @context.User.Identity?.Name!</p>
+            <p>This page is only accessible to authenticated users.</p>
+            <p>Your user ID: @context.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value</p>
+        </div>
+    </Authorized>
+</AuthorizeView>
